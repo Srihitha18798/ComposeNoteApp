@@ -85,7 +85,7 @@ fun NoteItem(
         }
         IconButton(onClick = onDeleteClick,
         modifier = Modifier.align(Alignment.BottomEnd)) {
-            androidx.compose.material.Icon(imageVector = Icons.Default.Delete, contentDescription = "Delete note")
+            Icon(imageVector = Icons.Default.Delete, contentDescription = "Delete note")
 
         }
     }
