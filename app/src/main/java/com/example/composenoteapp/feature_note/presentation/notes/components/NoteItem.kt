@@ -29,33 +29,33 @@ import com.example.composenoteapp.feature_note.presentation.notes.NotesEvent
 
 @Composable
 fun NoteItem(
-    note:Note,
-    modifier: Modifier=Modifier,
-    cornerRadius: Dp=10.dp,
-    cutCornerSize: Dp=30.dp,
-    onDeleteClick :()->Unit
-){
-    Box(modifier = modifier){
-        Canvas(modifier = Modifier.matchParentSize(),){
-            val clipPath= Path().apply {
-                lineTo(size.width-cutCornerSize.toPx(),0f)
-                lineTo(size.width,cutCornerSize.toPx())
-                lineTo(size.width,size.height)
-                lineTo(0f,size.height)
+    note: Note,
+    modifier: Modifier = Modifier,
+    cornerRadius: Dp = 10.dp,
+    cutCornerSize: Dp = 30.dp,
+    onDeleteClick: () -> Unit
+) {
+    Box(modifier = modifier) {
+        Canvas(modifier = Modifier.matchParentSize()) {
+            val clipPath = Path().apply {
+                lineTo(size.width - cutCornerSize.toPx(), 0f)
+                lineTo(size.width, cutCornerSize.toPx())
+                lineTo(size.width, size.height)
+                lineTo(0f, size.height)
                 close()
             }
-            clipPath(clipPath){
+            clipPath(clipPath) {
                 drawRoundRect(
                     color = Color(note.color),
-                    size=size,
+                    size = size,
                     cornerRadius = CornerRadius(cornerRadius.toPx())
                 )
                 drawRoundRect(
                     color = Color(
-                        (ColorUtils.blendARGB(note.color,0x000000,0.2f))
+                        (ColorUtils.blendARGB(note.color, 0x000000, 0.2f))
                     ),
-                    topLeft=Offset(size.width-cutCornerSize.toPx(),-100f),
-                    size= Size(cutCornerSize.toPx()+100f,cutCornerSize.toPx()+100f),
+                    topLeft = Offset(size.width - cutCornerSize.toPx(), -100f),
+                    size = Size(cutCornerSize.toPx() + 100f, cutCornerSize.toPx() + 100f),
                     cornerRadius = CornerRadius(cornerRadius.toPx())
                 )
             }
@@ -67,7 +67,7 @@ fun NoteItem(
                 .padding(end = 32.dp)
         ) {
             Text(
-                text =note.title,
+                text = note.title,
                 style = MaterialTheme.typography.h6,
                 color = MaterialTheme.colors.onSurface,
                 maxLines = 1,
@@ -75,7 +75,7 @@ fun NoteItem(
             )
             Spacer(modifier = Modifier.height(8.dp))
             Text(
-                text =note.title,
+                text = note.title,
                 style = MaterialTheme.typography.h6,
                 color = MaterialTheme.colors.onSurface,
                 maxLines = 10,
@@ -83,8 +83,10 @@ fun NoteItem(
             )
 
         }
-        IconButton(onClick = onDeleteClick,
-        modifier = Modifier.align(Alignment.BottomEnd)) {
+        IconButton(
+            onClick = onDeleteClick,
+            modifier = Modifier.align(Alignment.BottomEnd)
+        ) {
             Icon(imageVector = Icons.Default.Delete, contentDescription = "Delete note")
 
         }

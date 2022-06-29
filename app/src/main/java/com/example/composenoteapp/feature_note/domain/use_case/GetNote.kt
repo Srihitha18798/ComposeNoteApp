@@ -6,7 +6,7 @@ import com.example.composenoteapp.feature_note.domain.repository.NoteRepository
 class GetNote(
     private val repository: NoteRepository
 ) {
-    suspend operator fun invoke(id:Int): Note?{
+    suspend operator fun invoke(id: Int): Note? {
 
         return repository.getNoteNyId(id)
     }

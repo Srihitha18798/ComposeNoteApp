@@ -26,17 +26,18 @@ import kotlinx.coroutines.launch
 @Composable
 fun NotesScreen(
     navController: NavController,
-    viewModel:NotesViewModel= hiltViewModel()
+    viewModel: NotesViewModel = hiltViewModel()
 ) {
-    val state=viewModel.state.value
-    val scaffoldState= rememberScaffoldState()
-    val scope= rememberCoroutineScope()
+    val state = viewModel.state.value
+    val scaffoldState = rememberScaffoldState()
+    val scope = rememberCoroutineScope()
 
     Scaffold(
-        floatingActionButton={
-            FloatingActionButton(onClick = {
+        floatingActionButton = {
+            FloatingActionButton(
+                onClick = {
 
-            },
+                },
                 backgroundColor = MaterialTheme.colors.primary
             ) {
                 Icon(imageVector = Icons.Default.Add, contentDescription = "Add note")
@@ -60,24 +61,26 @@ fun NotesScreen(
 
 
             ) {
-                Text(text = "Your note",
-                style = MaterialTheme.typography.h4
+                Text(
+                    text = "Your note",
+                    style = MaterialTheme.typography.h4
                 )
                 IconButton(
                     onClick = {
-                              viewModel.onEvent(NotesEvent.ToggleOrderSection)
+                        viewModel.onEvent(NotesEvent.ToggleOrderSection)
 
 
-                },
+                    },
                 ) {
                     Icon(imageVector = Icons.Default.Sort, contentDescription = "Sort")
 
                 }
 
             }
-            AnimatedVisibility(visible = state.isOrderSectionVisible,
-            enter = fadeIn()+ slideInVertically(),
-                exit = fadeOut()+ slideOutVertically()
+            AnimatedVisibility(
+                visible = state.isOrderSectionVisible,
+                enter = fadeIn() + slideInVertically(),
+                exit = fadeOut() + slideOutVertically()
             ) {
 
                 OrderSection(
@@ -93,22 +96,24 @@ fun NotesScreen(
             Spacer(modifier = Modifier.height(16.dp))
             LazyColumn(
                 modifier = Modifier.fillMaxSize()
-            ){
-                items(state.notes){note->
+            ) {
+                items(state.notes) { note ->
                     NoteItem(
                         note = note,
-                        modifier = Modifier.fillMaxWidth().clickable {
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .clickable {
 
-                        },
+                            },
                         onDeleteClick = {
                             viewModel.onEvent(NotesEvent.DeleteNote(note))
                             scope.launch {
-                                val result=scaffoldState.snackbarHostState.showSnackbar(
+                                val result = scaffoldState.snackbarHostState.showSnackbar(
                                     message = "Note Deleted",
                                     actionLabel = "Undo"
 
                                 )
-                                if(result==SnackbarResult.ActionPerformed){
+                                if (result == SnackbarResult.ActionPerformed) {
                                     viewModel.onEvent(NotesEvent.RestoreNote)
                                 }
                             }

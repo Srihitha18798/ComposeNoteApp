@@ -8,32 +8,35 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 
 private val DarkColorPalette = darkColors(
-        primary = Color.White,
-        background= DarkGray,
-        onBackground=Color.White,
-        surface= LightBlue,
-        onSurface= DarkGray
-       /* primaryVariant = Purple700,
-        secondary = Teal200*/
+    primary = Color.White,
+    background = DarkGray,
+    onBackground = Color.White,
+    surface = LightBlue,
+    onSurface = DarkGray
+    /* primaryVariant = Purple700,
+     secondary = Teal200*/
 )
 
 private val LightColorPalette = lightColors(
-        primary = Purple500,
-        primaryVariant = Purple700,
-        secondary = Teal200
+    primary = Purple500,
+    primaryVariant = Purple700,
+    secondary = Teal200
 
-        /* Other default colors to override
-    background = Color.White,
-    surface = Color.White,
-    onPrimary = Color.White,
-    onSecondary = Color.Black,
-    onBackground = Color.Black,
-    onSurface = Color.Black,
-    */
+    /* Other default colors to override
+background = Color.White,
+surface = Color.White,
+onPrimary = Color.White,
+onSecondary = Color.Black,
+onBackground = Color.Black,
+onSurface = Color.Black,
+*/
 )
 
 @Composable
-fun ComposeNoteAppTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable () -> Unit) {
+fun ComposeNoteAppTheme(
+    darkTheme: Boolean = isSystemInDarkTheme(),
+    content: @Composable () -> Unit
+) {
     val colors = if (darkTheme) {
         DarkColorPalette
     } else {
@@ -41,9 +44,9 @@ fun ComposeNoteAppTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Co
     }
 
     MaterialTheme(
-            colors = DarkColorPalette,
-            typography = Typography,
-            shapes = Shapes,
-            content = content
+        colors = DarkColorPalette,
+        typography = Typography,
+        shapes = Shapes,
+        content = content
     )
 }
