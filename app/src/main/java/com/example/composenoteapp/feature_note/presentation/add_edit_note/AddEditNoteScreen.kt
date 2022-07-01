@@ -32,33 +32,33 @@ import kotlinx.coroutines.launch
 @Composable
 fun AddEditNoteScreen(
     navController: NavController,
-    noteColor:Int,
-    viewModel: AddEditNoteViewModel= hiltViewModel()
-){
+    noteColor: Int,
+    viewModel: AddEditNoteViewModel = hiltViewModel()
+) {
 
-    val titleState=viewModel.noteTitle.value
-    val contentState=viewModel.noteContent.value
+    val titleState = viewModel.noteTitle.value
+    val contentState = viewModel.noteContent.value
 
-    val scaffoldState= rememberScaffoldState()
+    val scaffoldState = rememberScaffoldState()
 
-    val noteBackgroundAnimatable=remember{
+    val noteBackgroundAnimatable = remember {
         Animatable(
-            Color(if(noteColor!=-1) noteColor else viewModel.noteColor.value)
+            Color(if (noteColor != -1) noteColor else viewModel.noteColor.value)
         )
     }
 
-    val scope= rememberCoroutineScope()
+    val scope = rememberCoroutineScope()
 
-    LaunchedEffect(key1 = true){
-        viewModel.eventFlow.collectLatest { event->
-            when(event){
-                is AddEditNoteViewModel.UiEvent.ShowSnackbar->{
+    LaunchedEffect(key1 = true) {
+        viewModel.eventFlow.collectLatest { event ->
+            when (event) {
+                is AddEditNoteViewModel.UiEvent.ShowSnackbar -> {
                     scaffoldState.snackbarHostState.showSnackbar(
                         message = event.message
                     )
 
                 }
-                is AddEditNoteViewModel.UiEvent.SaveNote->{
+                is AddEditNoteViewModel.UiEvent.SaveNote -> {
                     navController.navigateUp()
 
                 }
@@ -68,11 +68,12 @@ fun AddEditNoteScreen(
 
     Scaffold(
         floatingActionButton = {
-            FloatingActionButton(onClick = {
-                viewModel.onEvent(AddEditNoteEvent.SaveNote)
-            },
-            backgroundColor = MaterialTheme.colors.primary
-                ) {
+            FloatingActionButton(
+                onClick = {
+                    viewModel.onEvent(AddEditNoteEvent.SaveNote)
+                },
+                backgroundColor = MaterialTheme.colors.primary
+            ) {
 
                 Icon(imageVector = Icons.Default.Save, contentDescription = "Save note")
 
@@ -88,14 +89,14 @@ fun AddEditNoteScreen(
         ) {
 
             Row(
-               modifier = Modifier
-                   .fillMaxWidth()
-                   .padding(8.dp),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(8.dp),
                 horizontalArrangement = Arrangement.SpaceBetween
-            ){
+            ) {
 
-                Note.noteColoes.forEach{ color ->
-                    val colorInt=color.toArgb()
+                Note.noteColoes.forEach { color ->
+                    val colorInt = color.toArgb()
                     Box(
                         modifier = Modifier
                             .size(50.dp)
@@ -127,7 +128,7 @@ fun AddEditNoteScreen(
             }
             Spacer(modifier = Modifier.height(16.dp))
             TransparentHintField(text = titleState.text, hint = titleState.hint, onValueChange = {
-                                                                                                 viewModel.onEvent(AddEditNoteEvent.EnteredTitle(it))
+                viewModel.onEvent(AddEditNoteEvent.EnteredTitle(it))
             }, onFocusChange = {
                 viewModel.onEvent(AddEditNoteEvent.ChangeTitleFocus(it))
             },
@@ -137,11 +138,14 @@ fun AddEditNoteScreen(
 
             )
             Spacer(modifier = Modifier.height(16.dp))
-            TransparentHintField(text = contentState.text, hint = contentState.hint, onValueChange = {
-                viewModel.onEvent(AddEditNoteEvent.EnteredContent(it))
-            }, onFocusChange = {
-                viewModel.onEvent(AddEditNoteEvent.ChangeContentFocus(it))
-            },
+            TransparentHintField(text = contentState.text,
+                hint = contentState.hint,
+                onValueChange = {
+                    viewModel.onEvent(AddEditNoteEvent.EnteredContent(it))
+                },
+                onFocusChange = {
+                    viewModel.onEvent(AddEditNoteEvent.ChangeContentFocus(it))
+                },
                 isHintVisible = contentState.isHintVisible,
                 textStyle = MaterialTheme.typography.body1,
                 modifier = Modifier.fillMaxHeight()
