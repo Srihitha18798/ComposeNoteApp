@@ -75,8 +75,8 @@ fun NoteItem(
             )
             Spacer(modifier = Modifier.height(8.dp))
             Text(
-                text = note.title,
-                style = MaterialTheme.typography.h6,
+                text = note.content,
+                style = MaterialTheme.typography.body1,
                 color = MaterialTheme.colors.onSurface,
                 maxLines = 10,
                 overflow = TextOverflow.Ellipsis
