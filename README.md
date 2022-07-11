@@ -12,9 +12,6 @@ The depdendencies for the project are described in the Gradle script `build.grad
 - [Compose](https://developer.android.com/jetpack/compose) - Jetpack Compose is Android's modern toolkit for building native UI. It simplifies and accelerates UI development on Android
 - [Coroutines](https://kotlinlang.org/docs/reference/coroutines-overview.html) - Kotlin's way of writing asynchronous, non-blocking code
 - [Android Architecture Components](https://developer.android.com/topic/libraries/architecture) - Collection of libraries that help you design robust, testable, and maintainable apps
-  - [LiveData](https://developer.android.com/topic/libraries/architecture/livedata) - Data objects that notify views when the underlying data changes
-  - [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel) - Stores UI-related data that isn't destroyed on UI changes
-  - [DataBinding](https://developer.android.com/topic/libraries/data-binding) - Allows you to bind UI components in your layouts to data sources in your app using a declarative format rather than programmatically
 - [Dagger-Hilt](https://developer.android.com/training/dependency-injection/hilt-android) - Dependency Injection Framework. Hilt provides a standard way to incorporate Dagger dependency injection into an Android application
 - [Retrofit](https://square.github.io/retrofit/) - A type-safe HTTP client for Android and Java
 - [Room](https://developer.android.com/topic/libraries/architecture/room) - A database library providing an abstraction layer over SQLite 
