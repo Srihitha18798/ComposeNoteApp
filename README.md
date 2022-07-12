@@ -2,7 +2,7 @@
 
 ## App description
 
-An android note App with Jetpack Compose and clean Architure. This app mainly focuses on the CRUD operations i.e, this app will let you able to add, read, update, and delete the notes by using the Room database.
+An android note App with Jetpack Compose and clean Architecture. This app mainly focuses on the CRUD operations i.e, this app will let you able to add, read, update, and delete the notes by using the Room database.
 
 ## Dependencies
 The depdendencies for the project are described in the Gradle script `build.gradle` of the app, just sync the project in Android Studio and you are ready to go :)
